@@ -14,6 +14,7 @@ cenario = Cenario(tamanho, bob)
 while True:
     # regras
     bob.calcular_regras()
+    cenario.calc_regras()
 
     # pintar
     tela.fill(PRETO)

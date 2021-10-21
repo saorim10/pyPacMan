@@ -1,11 +1,12 @@
 import pygame.draw
 
 from constantes import PRETO, AZUL_ESCURO, AMARELO
-
+from pacman import Pacman
 
 class Cenario:
     def __init__(self, tamanho, pac):
         self.pac = pac
+        self.pontos = 0
         self.tamanho = tamanho
         self.matriz = [
             [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
@@ -56,3 +57,13 @@ class Cenario:
     def pintar(self, tela):
         for n_linha, linha in enumerate(self.matriz):
             self.pintar_linha(tela, n_linha, linha)
+
+    def calc_regras(self):
+        col = self.pac.coluna_intencao
+        lin = self.pac.linha_intencao
+        if 0 <= col <= 27 and 0 <= lin <= 28:
+            if self.matriz[lin][col] != 2:
+                self.pac.permitir_movimento()
+                if self.matriz[lin][col] == 1:
+                    self.pontos += 1
+                    self.matriz[lin][col] = 0

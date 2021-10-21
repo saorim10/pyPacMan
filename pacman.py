@@ -94,3 +94,7 @@ class Pacman:
                 mouse_x, mouse_y = e.pos
                 self.coluna = (mouse_x - self.centro_x) / delay
                 self.linha = (mouse_y - self.centro_y) / delay
+
+    def permitir_movimento(self):
+        self.linha = self.linha_intencao
+        self.coluna = self.coluna_intencao
